@@ -1,26 +1,45 @@
-import React from "react";
+import React, { useState } from "react";
 import ReactDom from "react-dom";
 import "./index.css";
 
-const Square = () => {
+const Square = (props) => {
+  const [value, setValue] = useState(null);
   return (
-    <div style={{ backgroundColor: "gold", margin: 10, padding: 20 }}>
-      Square
-    </div>
+    <button className="square" onClick={() => setValue("X")}>
+      {value}
+    </button>
   );
 };
 const Board = () => {
+  const RenderSquare = (i) => {
+    return <Square />;
+  };
   return (
     <div style={{ backgroundColor: "skyblue", margin: 10, padding: 20 }}>
       Board
-      <Square />
+      <div className="board-row">
+        {RenderSquare(0)}
+        {RenderSquare(1)}
+        {RenderSquare(2)}
+      </div>
+      <div className="board-row">
+        {" "}
+        {RenderSquare(3)}
+        {RenderSquare(4)}
+        {RenderSquare(5)}
+      </div>
+      <div className="board-row">
+        {RenderSquare(6)}
+        {RenderSquare(7)}
+        {RenderSquare(8)}
+      </div>
     </div>
   );
 };
 const Game = () => {
   return (
     <>
-      <div style={{ backgroundColor: "salmon", margin: 10, padding: 20 }}>
+      <div className="game">
         Game
         <Board />
       </div>
